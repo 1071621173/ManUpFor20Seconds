@@ -742,5 +742,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullet Pooler
       objectReference: {fileID: 0}
+    - target: {fileID: 4915406437524538935, guid: 4cb4c067b0273b347a7c03969762e141,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cb4c067b0273b347a7c03969762e141, type: 3}

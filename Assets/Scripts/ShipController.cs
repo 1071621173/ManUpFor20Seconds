@@ -2,34 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class ShipController : MonoBehaviour
 {
     [SerializeField]
-    private float speed; 
+    private float speed;
+
+    public InputMaster inputMaster;
+    Vector2 movementInput;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        inputMaster = new InputMaster();
+        inputMaster.Player.Move.performed += ctx => movementInput = ctx.ReadValue<Vector2>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Horizontal") != 0)
-        {
-            transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
-        }
-        if (Input.GetAxis("Vertical") != 0)
-        {
-            transform.Translate(Vector3.up * Input.GetAxis("Vertical") * speed * Time.deltaTime);
-        }
+        transform.Translate(movementInput * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Triggered");
         SceneManager.LoadScene("GameOver");
+    }
+
+    private void OnEnable()
+    {
+        inputMaster.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputMaster.Disable();
     }
 }
