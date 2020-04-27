@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 174618304}
   - component: {fileID: 174618306}
   - component: {fileID: 174618307}
+  - component: {fileID: 174618308}
   m_Layer: 0
   m_Name: PlayArea
   m_TagString: Untagged
@@ -260,6 +261,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &174618308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174618302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81786983d597b4e1baa54d3cb9b36e2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxProjectiles: 50
+  projectileSpeed: 2
+  projectilePrefab: {fileID: 2057619796337572242, guid: 56be520b79d2671428d0cb6cac113f2f,
+    type: 3}
 --- !u!1 &196274737
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +519,7 @@ Transform:
   m_GameObject: {fileID: 1129471419}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.851, y: 0.482, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 611970655}
   - {fileID: 196274738}
@@ -726,7 +743,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.4692167
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
