@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,8 @@ using System.Linq;
 
 public class RandomTurrets : MonoBehaviour
 {
-    public int maxProjectiles;
+    public GameObject[] allProjectilePrefabs;
     public float projectileSpeed;
-    public GameObject projectilePrefab;
 
     private float xAxisMax;
     private float yAxisMax;
@@ -30,7 +30,7 @@ public class RandomTurrets : MonoBehaviour
         this.yAxisMax = Camera.main.orthographicSize;
         this.xAxisMax = this.yAxisMax * Screen.width / Screen.height;
 
-        this.projectilePool = new ProjectilePool(projectilePrefab, maxProjectiles, xAxisMax, yAxisMax);
+        this.projectilePool = new ProjectilePool(allProjectilePrefabs, xAxisMax, yAxisMax);
         projectilePool.init();
     }
 
@@ -77,31 +77,43 @@ public class RandomTurrets : MonoBehaviour
     }
 
     private class ProjectilePool {
-        private readonly GameObject projectilePrefab;
-        private readonly int size;
+        private readonly GameObject[] projectilePrefabs;
         private readonly float xAxisMax;
         private readonly float yAxisMax;
         private ISet<GameObject> pool = new HashSet<GameObject>();
 
-        public ProjectilePool(GameObject projectilePrefab, int size, float xAxisMax, float yAxisMax) {
-            this.projectilePrefab = projectilePrefab;
-            this.size = size;
+        public ProjectilePool(GameObject[] projectilePrefabs, float xAxisMax, float yAxisMax) {
+            this.projectilePrefabs = projectilePrefabs;
             this.xAxisMax = xAxisMax;
             this.yAxisMax = yAxisMax;
         }
 
         public void init()
         {
-            for (int i = 0; i < size; i++) {
-                GameObject projectile = Instantiate(projectilePrefab, new Vector3(0, 0, 0), Quaternion.identity);
-                projectile.SetActive(false);
-                projectile.GetComponent<ProjectileOutOfBoundTrigger>().setBound(xAxisMax, yAxisMax);
-                pool.Add(projectile);
+            ProjectileCollection collection = SaveLoad.LoadProjectileCollection();
+
+
+            foreach (var projectile in collection.projectiles)
+            {
+                foreach (var prefab in projectilePrefabs)
+                {
+                    if (projectile.name == prefab.name)
+                    {
+                        for (int i = 0; i < projectile.number; i++)
+                        {
+                            GameObject gameObject = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
+                            gameObject.SetActive(false);
+                            gameObject.GetComponent<ProjectileOutOfBoundTrigger>().setBound(xAxisMax, yAxisMax);
+                            pool.Add(gameObject);
+                        }
+                    }
+                }
             }
         }
 
         public List<GameObject> getInactive() {
             return pool.Where(go => !go.activeSelf).ToList();
         }
+
     }
 }

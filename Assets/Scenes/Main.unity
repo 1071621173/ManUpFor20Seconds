@@ -273,10 +273,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81786983d597b4e1baa54d3cb9b36e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxProjectiles: 50
+  allProjectilePrefabs:
+  - {fileID: 2057619796337572242, guid: 56be520b79d2671428d0cb6cac113f2f, type: 3}
+  - {fileID: 2057619796337572242, guid: b79b653f762cec544b031bf82f44b5ee, type: 3}
+  - {fileID: 2057619796337572242, guid: 346b46710c66e4442b7cfd64e4ef648b, type: 3}
   projectileSpeed: 2
-  projectilePrefab: {fileID: 2057619796337572242, guid: 56be520b79d2671428d0cb6cac113f2f,
-    type: 3}
 --- !u!1 &196274737
 GameObject:
   m_ObjectHideFlags: 0
