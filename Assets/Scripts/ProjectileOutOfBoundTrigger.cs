@@ -5,18 +5,28 @@ using UnityEngine;
 
 public class ProjectileOutOfBoundTrigger : MonoBehaviour
 {
-  public Turret turret;
+    private float xAxisMax;
+    private float yAxisMax;
 
-  public void OnTriggerExit2D(Collider2D other) {
-    if ("PlayArea" == other.gameObject.name && isOutOfBound(other.gameObject)) {
-        turret.OnProjectileDestruction(this.gameObject);
+    public void setBound(float xAxisMax, float yAxisMax)
+    {
+        this.xAxisMax = xAxisMax;
+        this.yAxisMax = yAxisMax;
     }
-  }
 
-  private bool isOutOfBound(GameObject playArea) {
-    float x = Math.Abs(this.gameObject.transform.position.x);
-    float y = Math.Abs(this.gameObject.transform.position.y);
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if ("PlayArea" == other.gameObject.name && isOutOfBound(other.gameObject))
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
 
-    return turret.getPlayAreaBounds().x < x || turret.getPlayAreaBounds().y < y;
-  }
+    private bool isOutOfBound(GameObject playArea) 
+    {
+        float x = Math.Abs(this.gameObject.transform.position.x);
+        float y = Math.Abs(this.gameObject.transform.position.y);
+
+        return xAxisMax < x || yAxisMax < y;
+    }
 }
