@@ -273,9 +273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81786983d597b4e1baa54d3cb9b36e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxProjectiles: 50
+  maxProjectiles: 25
   projectileSpeed: 2
-  projectilePrefab: {fileID: 2057619796337572242, guid: 56be520b79d2671428d0cb6cac113f2f,
+  projectilePrefab: {fileID: 2057619796337572242, guid: 499d98b4bf34e3349b017561f92e6c4c,
     type: 3}
 --- !u!1 &196274737
 GameObject:
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 1129471425}
   m_Layer: 0
   m_Name: PlayerShip
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
