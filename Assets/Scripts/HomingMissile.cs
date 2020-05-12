@@ -12,8 +12,13 @@ public class HomingMissile : MonoBehaviour
 
     private void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        rb = gameObject.GetComponent<Rigidbody2D>();       
+    }
+
+    private void OnEnable()
+    {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        transform.up = target.position - transform.position;
     }
 
     private void FixedUpdate()

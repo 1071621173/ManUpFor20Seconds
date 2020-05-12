@@ -51,9 +51,10 @@ public class RandomTurrets : MonoBehaviour
         Vector2 origin = randomPointOnBorder(borderSupplierIndex);
 
         // give it a velocity
-        projectile.SetActive(true);
+
         projectile.transform.position = new Vector3(origin.x, origin.y, 0);
         setVelocity(projectile, borderSupplierIndex, origin);
+        projectile.SetActive(true);
     }
 
     private void setVelocity(GameObject projectile, int originBorderIndex, Vector2 origin) {
