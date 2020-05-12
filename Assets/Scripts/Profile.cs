@@ -2,7 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Profile
+public sealed class Profile
 {
-    public static int score;
+    private static Profile instance;
+    public int score;
+
+    private Profile()
+    {
+
+    }
+
+    public static Profile GetInstance()
+    {
+        if (instance == null)
+            instance = new Profile();
+        return instance;
+    }
 }

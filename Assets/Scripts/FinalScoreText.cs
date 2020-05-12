@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
-public class FinalScoreTextController : MonoBehaviour
+public class FinalScoreText : MonoBehaviour
 {
     private Text text;
     
@@ -13,6 +13,6 @@ public class FinalScoreTextController : MonoBehaviour
     void Start()
     {
         text = GetComponent<Text>();
-        text.text = "Score: " + Profile.score;
+        text.text = "Score: " + Profile.GetInstance().score;
     }
 }

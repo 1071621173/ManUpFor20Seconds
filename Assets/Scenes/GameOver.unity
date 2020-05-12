@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 2014048811}
   - component: {fileID: 2014048810}
   m_Layer: 5
-  m_Name: Final Score Text
+  m_Name: FinalScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
